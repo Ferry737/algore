@@ -1,0 +1,10 @@
+# Mirror of root exclusions for any build whose context is ./engine.
+.venv
+.pytest_cache
+data
+*.db
+*.db-*
+__pycache__
+**/__pycache__
+*.pyc
+**/*.pyc
