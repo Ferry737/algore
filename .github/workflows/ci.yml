@@ -46,3 +46,41 @@ jobs:
         run: npm run build
         env:
           NODE_OPTIONS: --max-old-space-size=2048
+
+  windows:
+    name: Windows 11 · setup + pytest + build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Validate PowerShell syntax
+        shell: pwsh
+        run: |
+          Get-ChildItem windows/*.ps1 | ForEach-Object {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errors) | Out-Null
+            if ($errors) { $errors | ForEach-Object { Write-Error $_.Message }; exit 1 }
+          }
+      - name: Run Windows setup script
+        shell: pwsh
+        run: ./windows/setup.ps1
+      - name: Engine tests on Windows
+        shell: pwsh
+        working-directory: engine
+        run: |
+          & ../engine/.venv/Scripts/python.exe -m pytest -q
+      - name: Dashboard lint and build on Windows
+        shell: pwsh
+        working-directory: dashboard
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          npm run lint
+          npm run build
