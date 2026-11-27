@@ -1,0 +1,8 @@
+numpy
+pandas
+fastapi>=0.110
+uvicorn[standard]
+pytest
+pyjwt
+httpx
+websockets
