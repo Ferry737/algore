@@ -9,6 +9,7 @@
 [![MQL5](https://img.shields.io/badge/MQL5-MetaTrader%205-F59E0B?style=flat-square)](engine/mql5)
 [![Tests](https://img.shields.io/badge/tests-44%2F44%20passing-10B981?style=flat-square)](engine/tests)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-3B82F6?style=flat-square)](CONTRIBUTING.md)
+[![Windows 11](https://img.shields.io/badge/Windows-11-0078D4?style=flat-square)](windows/README.md)
 
 **Independent, clean-room research infrastructure for quantitative strategy breeding, staged incubation, and MetaTrader 5 telemetry.**
 
@@ -115,6 +116,10 @@ dashboard/  Next.js App Router PWA with runtime connection settings
 deploy/     Docker Compose, Dockerfile, run script, example environment
 docs/       Visual assets
 ```
+
+## Windows 11
+
+Native PowerShell setup, a double-click launcher, and MetaTrader 5 bridge notes live in [windows/README.md](windows/README.md). No WSL or Docker is required.
 
 ## Contributing
 
